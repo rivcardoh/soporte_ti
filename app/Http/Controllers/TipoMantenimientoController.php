@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Equipo;
-use App\Models\Negocio;
 
-class MantenimientoController extends Controller
+class TipoMantenimientoController extends Controller
 {
     /**
      * Display a listing of the resource.

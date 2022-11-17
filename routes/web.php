@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\NegocioController;
+use App\Http\Controllers\RegionalController;
+use App\Http\Controllers\SubareaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,40 +41,40 @@ Route::get('usuario/{id}/show', [PersonaController::class, 'show'])->name('usuar
 Route::get('usuario//{id}destroy', [PersonaController::class, 'destroy'])->name('usuario.destroy');
 
 // Rutas regional
-Route::get('regional/index', [PersonaController::class, 'index'])->name('regional.index');
-Route::get('regional/create', [PersonaController::class, 'create'])->name('regional.create');
-Route::post('regional/store', [PersonaController::class, 'store'])->name('regional.store');
-Route::get('regional/{id}/edit', [PersonaController::class, 'edit'])->name('regional.edit');
-Route::put('regional/update', [PersonaController::class, 'update'])->name('regional.update');
-Route::get('regional/{id}/show', [PersonaController::class, 'show'])->name('regional.show');
-Route::get('regional//{id}destroy', [PersonaController::class, 'destroy'])->name('regional.destroy');
+Route::get('regional/index', [RegionalController::class, 'index'])->name('regional.index');
+Route::get('regional/create', [RegionalController::class, 'create'])->name('regional.create');
+Route::post('regional/store', [RegionalController::class, 'store'])->name('regional.store');
+Route::get('regional/{id}/edit', [RegionalController::class, 'edit'])->name('regional.edit');
+Route::put('regional/update', [RegionalController::class, 'update'])->name('regional.update');
+Route::get('regional/{id}/show', [RegionalController::class, 'show'])->name('regional.show');
+Route::get('regional//{id}destroy', [RegionalController::class, 'destroy'])->name('regional.destroy');
 
 // Rutas negocio
-Route::get('negocio/index', [PersonaController::class, 'index'])->name('negocio.index');
-Route::get('negocio/create', [PersonaController::class, 'create'])->name('negocio.create');
-Route::post('negocio/store', [PersonaController::class, 'store'])->name('negocio.store');
-Route::get('negocio/{id}/edit', [PersonaController::class, 'edit'])->name('negocio.edit');
-Route::put('negocio/update', [PersonaController::class, 'update'])->name('negocio.update');
-Route::get('negocio/{id}/show', [PersonaController::class, 'show'])->name('negocio.show');
-Route::get('negocio//{id}destroy', [PersonaController::class, 'destroy'])->name('negocio.destroy');
+Route::get('negocio/index', [NegocioController::class, 'index'])->name('negocio.index');
+Route::get('negocio/create', [NegocioController::class, 'create'])->name('negocio.create');
+Route::post('negocio/store', [NegocioController::class, 'store'])->name('negocio.store');
+Route::get('negocio/{id}/edit', [NegocioController::class, 'edit'])->name('negocio.edit');
+Route::put('negocio/update', [NegocioController::class, 'update'])->name('negocio.update');
+Route::get('negocio/{id}/show', [NegocioController::class, 'show'])->name('negocio.show');
+Route::get('negocio//{id}destroy', [NegocioController::class, 'destroy'])->name('negocio.destroy');
 
 // Rutas area
-Route::get('area/index', [PersonaController::class, 'index'])->name('area.index');
-Route::get('area/create', [PersonaController::class, 'create'])->name('area.create');
-Route::post('area/store', [PersonaController::class, 'store'])->name('area.store');
-Route::get('area/{id}/edit', [PersonaController::class, 'edit'])->name('area.edit');
-Route::put('area/update', [PersonaController::class, 'update'])->name('area.update');
-Route::get('area/{id}/show', [PersonaController::class, 'show'])->name('area.show');
-Route::get('area//{id}destroy', [PersonaController::class, 'destroy'])->name('area.destroy');
+Route::get('area/index', [AreaController::class, 'index'])->name('area.index');
+Route::get('area/create', [AreaController::class, 'create'])->name('area.create');
+Route::post('area/store', [AreaController::class, 'store'])->name('area.store');
+Route::get('area/{id}/edit', [AreaController::class, 'edit'])->name('area.edit');
+Route::put('area/update', [AreaController::class, 'update'])->name('area.update');
+Route::get('area/{id}/show', [AreaController::class, 'show'])->name('area.show');
+Route::get('area//{id}destroy', [AreaController::class, 'destroy'])->name('area.destroy');
 
 // Rutas subarea
-Route::get('subarea/index', [PersonaController::class, 'index'])->name('subarea.index');
-Route::get('subarea/create', [PersonaController::class, 'create'])->name('subarea.create');
-Route::post('subarea/store', [PersonaController::class, 'store'])->name('subarea.store');
-Route::get('subarea/{id}/edit', [PersonaController::class, 'edit'])->name('subarea.edit');
-Route::put('subarea/update', [PersonaController::class, 'update'])->name('subarea.update');
-Route::get('subarea/{id}/show', [PersonaController::class, 'show'])->name('subarea.show');
-Route::get('subarea//{id}destroy', [PersonaController::class, 'destroy'])->name('subarea.destroy');
+Route::get('subarea/index', [SubareaController::class, 'index'])->name('subarea.index');
+Route::get('subarea/create', [SubareaController::class, 'create'])->name('subarea.create');
+Route::post('subarea/store', [SubareaController::class, 'store'])->name('subarea.store');
+Route::get('subarea/{id}/edit', [SubareaController::class, 'edit'])->name('subarea.edit');
+Route::put('subarea/update', [SubareaController::class, 'update'])->name('subarea.update');
+Route::get('subarea/{id}/show', [SubareaController::class, 'show'])->name('subarea.show');
+Route::get('subarea//{id}destroy', [SubareaController::class, 'destroy'])->name('subarea.destroy');
 
 // Rutas tipo soporte
 Route::get('tipo_soporte/index', [PersonaController::class, 'index'])->name('tipo_soporte.index');

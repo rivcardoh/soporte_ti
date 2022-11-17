@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Negocio;
 class NegocioController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class NegocioController extends Controller
      */
     public function index()
     {
-        //
+        $negocios=Negocio::where('estado', 1)->paginate(10);
+        //dd($persona);
+        return view('negocio/index')->with('negocios', $negocios);
     }
 
     /**

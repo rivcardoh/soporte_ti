@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Subarea;
 class SubareaController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class SubareaController extends Controller
      */
     public function index()
     {
-        //
+        $subareas=Subarea::where('estado', 1)->paginate(10);
+        //dd($persona);
+        return view('subarea/index')->with('subareas', $subareas);
     }
 
     /**

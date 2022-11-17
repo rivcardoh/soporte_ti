@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Regional;
 class RegionalController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class RegionalController extends Controller
      */
     public function index()
     {
-        //
+        $regionales=Regional::where('estado', 1)->paginate(10);
+        //dd($persona);
+        return view('regional/index')->with('regionales', $regionales);
     }
 
     /**

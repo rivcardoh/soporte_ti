@@ -1,64 +1,54 @@
 @extends('adminlte::page')
 @section('title', 'Neogocio')
-
-
-
-@section('plugins.Datatables' ,true)
-    @section('content')
-
-
-    <div class="card">
-        <div class="card-header">
-            <h1 class='.card-title'>Negocios</h1>
-        </div>
-        {{-- Setup data for datatables --}}
-@php
-$heads = [
-    'ID',
-    'NOMBRE',
-    'ESTADO',
-    'FECHA CREADO',
-    'FECHA ACTUALIZACIÓN',
-    ['label' => 'ACCIONES', 'no-export' => true, 'width' => 5],
-];
-
-$btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                <i class="fa fa-lg fa-fw fa-pen"></i>
-            </button>';
-$btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                  <i class="fa fa-lg fa-fw fa-trash"></i>
-              </button>';
-$btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                   <i class="fa fa-lg fa-fw fa-eye"></i>
-               </button>';
-    foreach($negocios as $negocio)
-$config = [
-    'data' => [
-        [$negocio->id, $negocio->nombre,  $negocio->estado, $negocio->created_at,$negocio->updated_at,  '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-    ],
-    'order' => [[1, 'asc']],
-    'columns' => [null, null, null, null, null, null,null, null,  ['orderable' => true]],
-];
-    
-@endphp
-
-{{-- Minimal example / fill data using the component slot --}}
-<x-adminlte-datatable id="table2" :heads="$heads" >
-    @foreach($config['data'] as $row)
-        <tr>
-            @foreach($row as $cell)
-                <td>{!! $cell!!}</td>
-            @endforeach
-        </tr>
-    @endforeach
-</x-adminlte-datatable>        
+@section('content_header')
+<h1>Unidad de negocios</h1>
+@stop
+@section('content')
+<div class="card">
+    <div class="card-header">
+        <a href="" class="btn btn-primary">Nuevo negocio</a>
     </div>
-    @stop
-
+    <div class="card-body">
+        <table id="negocios" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>FECHA CREADO</th>
+                    <th>FECHA DE ACTUALIZACIÓN</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($negocios as $negocio)
+                <tr>
+                    <td>{{$negocio->id}}</td>
+                    <td>{{$negocio->nombre}}</td>
+                    <td>{{$negocio->created_at}}</td>
+                    <td>{{$negocio->updated_at}}</td>
+                    <td>
+                        <nobr><button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+                                <i class="fa fa-lg fa-fw fa-pen"></i>
+                            </button><button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                                <i class="fa fa-lg fa-fw fa-trash"></i>
+                            </button><button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                                <i class="fa fa-lg fa-fw fa-eye"></i>
+                            </button></nobr>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@stop
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
-
 @section('js')
-   
+<script>
+$(document).ready(function() {
+    $('#negocios').DataTable();
+});
+</script>
 @stop

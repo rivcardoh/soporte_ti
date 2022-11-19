@@ -331,61 +331,45 @@ return [
         // ],
         [
             'text'    => 'ADMINISTRADOR',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
                 [
                     'text' => 'Persona',
-                    'url'  => 'persona/index',
+                    'route'  => 'persona',
                 ],
                 [
-                    'text'    => '',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Usuario',
+                    'url'  => '',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Rol',
+                    'url'  => '',
+                ],
+                [
+                    'text' => 'Privilegio',
+                    'url'  => '',
                 ],
             ],
         ],
         [
             'text'    => 'SOLICITUD',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-file-signature',
             'submenu' => [
                 [
                     'text' => 'Regional',
-                    'url'  => 'regional/index',
+                    'route'  => 'regional',
                 ],
                 [
                     'text' => 'Negocio',
-                    'url'  => 'negocio/index',
+                    'route'  => 'negocio',
                 ],
                 [
                     'text' => 'Area',
-                    'url'  => 'area/index',
+                    'route'  => 'area',
                 ],
                 [
                     'text' => 'Subarea',
-                    'url'  => 'subarea/index',
+                    'route'  => 'subarea',
                 ],
                 [
                     'text'    => 'level_one',
@@ -419,7 +403,7 @@ return [
         ],
         [
             'text'    => 'MANTENIMIENTO',
-            'icon'    => 'fas fa-fw fa-tools',
+            'icon'    => 'fas fa-desktop',
             'submenu' => [
                 [
                     'text' => 'Equipo',
@@ -489,7 +473,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

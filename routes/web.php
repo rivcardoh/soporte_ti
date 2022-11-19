@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 // Rutas persona
-Route::get('persona/index', [PersonaController::class, 'index'])->name('persona.index');
+Route::get('persona', [PersonaController::class, 'index'])->name('persona');
 Route::get('persona/create', [PersonaController::class, 'create'])->name('persona.create');
 Route::post('persona/store', [PersonaController::class, 'store'])->name('persona.store');
 Route::get('persona/{id}/edit', [PersonaController::class, 'edit'])->name('persona.edit');
@@ -32,7 +32,7 @@ Route::get('persona/{id}/show', [PersonaController::class, 'show'])->name('perso
 Route::get('persona//{id}destroy', [PersonaController::class, 'destroy'])->name('persona.destroy');
 
 // Rutas usuario
-Route::get('usuario/index', [PersonaController::class, 'index'])->name('usuario.index');
+Route::get('usuario', [PersonaController::class, 'index'])->name('usuario');
 Route::get('usuario/create', [PersonaController::class, 'create'])->name('usuario.create');
 Route::post('usuario/store', [PersonaController::class, 'store'])->name('usuario.store');
 Route::get('usuario/{id}/edit', [PersonaController::class, 'edit'])->name('usuario.edit');
@@ -41,7 +41,7 @@ Route::get('usuario/{id}/show', [PersonaController::class, 'show'])->name('usuar
 Route::get('usuario//{id}destroy', [PersonaController::class, 'destroy'])->name('usuario.destroy');
 
 // Rutas regional
-Route::get('regional/index', [RegionalController::class, 'index'])->name('regional.index');
+Route::get('regional', [RegionalController::class, 'index'])->name('regional');
 Route::get('regional/create', [RegionalController::class, 'create'])->name('regional.create');
 Route::post('regional/store', [RegionalController::class, 'store'])->name('regional.store');
 Route::get('regional/{id}/edit', [RegionalController::class, 'edit'])->name('regional.edit');
@@ -50,7 +50,7 @@ Route::get('regional/{id}/show', [RegionalController::class, 'show'])->name('reg
 Route::get('regional//{id}destroy', [RegionalController::class, 'destroy'])->name('regional.destroy');
 
 // Rutas negocio
-Route::get('negocio/index', [NegocioController::class, 'index'])->name('negocio.index');
+Route::get('negocio', [NegocioController::class, 'index'])->name('negocio');
 Route::get('negocio/create', [NegocioController::class, 'create'])->name('negocio.create');
 Route::post('negocio/store', [NegocioController::class, 'store'])->name('negocio.store');
 Route::get('negocio/{id}/edit', [NegocioController::class, 'edit'])->name('negocio.edit');
@@ -59,7 +59,7 @@ Route::get('negocio/{id}/show', [NegocioController::class, 'show'])->name('negoc
 Route::get('negocio//{id}destroy', [NegocioController::class, 'destroy'])->name('negocio.destroy');
 
 // Rutas area
-Route::get('area/index', [AreaController::class, 'index'])->name('area.index');
+Route::get('area', [AreaController::class, 'index'])->name('area');
 Route::get('area/create', [AreaController::class, 'create'])->name('area.create');
 Route::post('area/store', [AreaController::class, 'store'])->name('area.store');
 Route::get('area/{id}/edit', [AreaController::class, 'edit'])->name('area.edit');
@@ -68,7 +68,7 @@ Route::get('area/{id}/show', [AreaController::class, 'show'])->name('area.show')
 Route::get('area//{id}destroy', [AreaController::class, 'destroy'])->name('area.destroy');
 
 // Rutas subarea
-Route::get('subarea/index', [SubareaController::class, 'index'])->name('subarea.index');
+Route::get('subarea', [SubareaController::class, 'index'])->name('subarea');
 Route::get('subarea/create', [SubareaController::class, 'create'])->name('subarea.create');
 Route::post('subarea/store', [SubareaController::class, 'store'])->name('subarea.store');
 Route::get('subarea/{id}/edit', [SubareaController::class, 'edit'])->name('subarea.edit');
@@ -77,7 +77,7 @@ Route::get('subarea/{id}/show', [SubareaController::class, 'show'])->name('subar
 Route::get('subarea//{id}destroy', [SubareaController::class, 'destroy'])->name('subarea.destroy');
 
 // Rutas tipo soporte
-Route::get('tipo_soporte/index', [PersonaController::class, 'index'])->name('tipo_soporte.index');
+Route::get('tipo_soporte', [PersonaController::class, 'index'])->name('tipo_soporte');
 Route::get('tipo_soporte/create', [PersonaController::class, 'create'])->name('tipo_soporte.create');
 Route::post('tipo_soporte/store', [PersonaController::class, 'store'])->name('tipo_soporte.store');
 Route::get('tipo_soporte/{id}/edit', [PersonaController::class, 'edit'])->name('tipo_soporte.edit');
@@ -86,7 +86,7 @@ Route::get('tipo_soporte/{id}/show', [PersonaController::class, 'show'])->name('
 Route::get('tipo_soporte//{id}destroy', [PersonaController::class, 'destroy'])->name('tipo_soporte.destroy');
 
 // Rutas tipo mantenimiento
-Route::get('tipo_mantenimiento/index', [PersonaController::class, 'index'])->name('tipo_mantenimiento.index');
+Route::get('tipo_mantenimiento', [PersonaController::class, 'index'])->name('tipo_mantenimiento');
 Route::get('tipo_mantenimiento/create', [PersonaController::class, 'create'])->name('tipo_mantenimiento.create');
 Route::post('tipo_mantenimiento/store', [PersonaController::class, 'store'])->name('tipo_mantenimiento.store');
 Route::get('tipo_mantenimiento/{id}/edit', [PersonaController::class, 'edit'])->name('tipo_mantenimiento.edit');

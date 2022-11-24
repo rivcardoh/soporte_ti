@@ -192,7 +192,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-info navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -364,12 +364,20 @@ return [
                     'route'  => 'negocio',
                 ],
                 [
-                    'text' => 'Area',
+                    'text' => 'Área',
                     'route'  => 'area',
                 ],
                 [
-                    'text' => 'Subarea',
+                    'text' => 'Subárea',
                     'route'  => 'subarea',
+                ],
+                [
+                    'text' => 'Tipo de mantenimiento',
+                    'route'  => 'tipo_mantenimiento',
+                ],
+                [
+                    'text' => 'Tipo de soporte',
+                    'route'  => 'tipo_soporte',
                 ],
                 [
                     'text'    => 'level_one',
@@ -416,6 +424,10 @@ return [
                 [
                     'text' => 'Cronograma',
                     'url'  => '#',
+                ],
+                [
+                    'text' => 'Sistema operativo',
+                    'url'  => 'sistema_operativo',
                 ],
             ],
         ],

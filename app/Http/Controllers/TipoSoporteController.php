@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Tipo_soporte;
 class TipoSoporteController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class TipoSoporteController extends Controller
      */
     public function index()
     {
-        //
+        $tsoportes=Tipo_soporte::all();
+        return view('tipo_soporte/index')->with('tsoportes', $tsoportes);
     }
 
     /**
@@ -23,7 +24,7 @@ class TipoSoporteController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipo_soporte/index');
     }
 
     /**
@@ -34,7 +35,11 @@ class TipoSoporteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $tsoportes = Tipo_soporte::create($request->all());
+        return redirect()->route('tipo_soporte', $tsoportes)->with('registro','La persona ha sido registrada exitosamente');;
     }
 
     /**
@@ -56,7 +61,8 @@ class TipoSoporteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tsoporte=Tipo_soporte::find($id);
+        return view('tipo_soporte.edit', compact('tsoporte'));
     }
 
     /**
@@ -68,7 +74,12 @@ class TipoSoporteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tsoporte=Tipo_soporte::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $tsoporte->update($request->all());
+        return redirect()->route('tipo_soporte', $tsoporte)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -79,6 +90,13 @@ class TipoSoporteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tsoporte=Tipo_soporte::find($id);
+        if($tsoporte->estado==0){
+            $tsoporte->estado=1;  
+        }elseif($tsoporte->estado==1){
+            $tsoporte->estado=0;
+        }
+        $tsoporte->save();
+        return redirect()->route('tipo_soporte');
     }
 }

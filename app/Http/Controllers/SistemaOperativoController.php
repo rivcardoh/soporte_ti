@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Sistema_operativo;
 class SistemaOperativoController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class SistemaOperativoController extends Controller
      */
     public function index()
     {
-        //
+        $soperativos=Sistema_operativo::all();
+        return view('sistema_operativo/index')->with('soperativos', $soperativos);
     }
 
     /**
@@ -23,7 +24,7 @@ class SistemaOperativoController extends Controller
      */
     public function create()
     {
-        //
+        return view('sistema_operativo/index');
     }
 
     /**
@@ -34,7 +35,11 @@ class SistemaOperativoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $soperativos = Sistema_operativo::create($request->all());
+        return redirect()->route('sistema_operativo', $soperativos)->with('registro','La persona ha sido registrada exitosamente');;
     }
 
     /**
@@ -56,7 +61,8 @@ class SistemaOperativoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $soperativo=Sistema_operativo::find($id);
+        return view('sistema_operativo.edit', compact('soperativo'));
     }
 
     /**
@@ -68,7 +74,12 @@ class SistemaOperativoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $soperativo=Sistema_operativo::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $soperativo->update($request->all());
+        return redirect()->route('sistema_operativo', $soperativo)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -79,6 +90,13 @@ class SistemaOperativoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $soperativo=Sistema_operativo::find($id);
+        if($soperativo->estado==0){
+            $soperativo->estado=1;  
+        }elseif($soperativo->estado==1){
+            $soperativo->estado=0;
+        }
+        $soperativo->save();
+        return redirect()->route('sistema_operativo');
     }
 }

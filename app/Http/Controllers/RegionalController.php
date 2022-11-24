@@ -13,7 +13,7 @@ class RegionalController extends Controller
      */
     public function index()
     {
-        $regionales=Regional::where('estado', 1)->paginate(10);
+        $regionales=Regional::all();
         //dd($persona);
         return view('regional/index')->with('regionales', $regionales);
     }
@@ -25,7 +25,7 @@ class RegionalController extends Controller
      */
     public function create()
     {
-        //
+        return view('regional/index');
     }
 
     /**
@@ -36,7 +36,11 @@ class RegionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $regionales = Regional::create($request->all());
+        return redirect()->route('regional', $regionales)->with('registro','La persona ha sido registrada exitosamente');;
     }
 
     /**
@@ -56,9 +60,10 @@ class RegionalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Regional $regional)
     {
-        //
+        $regional=Regional::find($id);
+        return view('regional.edit', compact('regional'));
     }
 
     /**
@@ -68,9 +73,14 @@ class RegionalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Regional $regional)
     {
-        //
+        $regional=Regional::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $regional->update($request->all());
+        return redirect()->route('regional', $regional)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -81,6 +91,13 @@ class RegionalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $regional=Regional::find($id);
+        if($regional->estado==0){
+            $regional->estado=1;  
+        }elseif($regional->estado==1){
+            $regional->estado=0;
+        }
+        $regional->save();
+        return redirect()->route('regional');
     }
 }

@@ -1,0 +1,58 @@
+@extends('adminlte::page')
+
+@section('title', 'Registrar persona')
+
+@section('content_header')
+<h1>Registro de persona</h1>
+@stop
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        {!!Form::open(['route'=>'persona.store'])!!}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {!!Form::label('nombre', 'Nombre')!!}
+                {!!Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Nombre'])!!}
+                @error('nombre')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                {!!Form::label('apellido', 'Apellido')!!}
+                {!!Form::text('apellido', null, ['class'=>'form-control', 'placeholder'=>'Apellido'])!!}
+                @error('apellido')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                {!!Form::label('ci', 'CI')!!}
+                {!!Form::number('ci', null, ['class'=>'form-control', 'placeholder'=>'CI'])!!}
+                @error('ci')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                {!!Form::label('celular', 'Celular')!!}
+                {!!Form::number('celular', null, ['class'=>'form-control', 'placeholder'=>'Celular'])!!}
+                @error('celular')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+        </div>
+            {!!Form::submit('Registrar', ['class'=>'btn btn-info'])!!}
+        {!!Form::close()!!}
+    </div>
+</div>
+
+@stop
+
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+<script>
+console.log('Hi!');
+</script>
+@stop

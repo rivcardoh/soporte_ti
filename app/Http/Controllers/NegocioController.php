@@ -13,7 +13,7 @@ class NegocioController extends Controller
      */
     public function index()
     {
-        $negocios=Negocio::where('estado', 1)->paginate(10);
+        $negocios=Negocio::all();
         //dd($persona);
         return view('negocio/index')->with('negocios', $negocios);
     }
@@ -25,7 +25,7 @@ class NegocioController extends Controller
      */
     public function create()
     {
-        //
+        return view('negocio/index');
     }
 
     /**
@@ -36,7 +36,11 @@ class NegocioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $negocios = Negocio::create($request->all());
+        return redirect()->route('negocio', $negocios)->with('registro','La persona ha sido registrada exitosamente');;
     }
 
     /**
@@ -47,7 +51,7 @@ class NegocioController extends Controller
      */
     public function show($id)
     {
-        //
+        $negocio=Negocio::find($id);
     }
 
     /**
@@ -56,9 +60,10 @@ class NegocioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Negocio $negocio)
     {
-        //
+        $negocio=Negocio::find($id);
+        return view('negocio.edit', compact('negocio'));
     }
 
     /**
@@ -68,9 +73,14 @@ class NegocioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Negocio $negocio)
     {
-        //
+        $negocio=Negocio::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $negocio->update($request->all());
+        return redirect()->route('negocio', $negocio)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -81,6 +91,13 @@ class NegocioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $negocio=Negocio::find($id);
+        if($negocio->estado==0){
+            $negocio->estado=1;  
+        }elseif($negocio->estado==1){
+            $negocio->estado=0;
+        }
+        $negocio->save();
+        return redirect()->route('negocio');
     }
 }

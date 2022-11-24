@@ -13,7 +13,7 @@ class SubareaController extends Controller
      */
     public function index()
     {
-        $subareas=Subarea::where('estado', 1)->paginate(10);
+        $subareas=Subarea::all();
         //dd($persona);
         return view('subarea/index')->with('subareas', $subareas);
     }
@@ -25,7 +25,7 @@ class SubareaController extends Controller
      */
     public function create()
     {
-        //
+        return view('subarea/index');
     }
 
     /**
@@ -36,7 +36,11 @@ class SubareaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $subareas = Subarea::create($request->all());
+        return redirect()->route('subarea', $subareas)->with('registro','La persona ha sido registrada exitosamente');
     }
 
     /**
@@ -56,9 +60,10 @@ class SubareaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Subarea $subarea)
     {
-        //
+        $subarea=Subarea::find($id);
+        return view('subarea.edit', compact('subarea'));
     }
 
     /**
@@ -70,7 +75,12 @@ class SubareaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subarea=Subarea::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $subarea->update($request->all());
+        return redirect()->route('subarea', $subarea)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -81,6 +91,14 @@ class SubareaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subarea=Subarea::find($id);
+        if($subarea->estado==0){
+            $subarea->estado=1;  
+        }elseif($subarea->estado==1){
+            $subarea->estado=0;
+        }
+        $subarea->save();
+        return redirect()->route('subarea');
     }
-}
+    }
+

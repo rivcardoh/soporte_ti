@@ -13,8 +13,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas=Area::where('estado', 1)->paginate(10);
-        //dd($persona);
+        $areas=Area::all();
         return view('area/index')->with('areas', $areas);
     }
 
@@ -25,7 +24,7 @@ class AreaController extends Controller
      */
     public function create()
     {
-        //
+        return view('area/index');
     }
 
     /**
@@ -36,7 +35,11 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $areas = Area::create($request->all());
+        return redirect()->route('area', $areas)->with('registro','La persona ha sido registrada exitosamente');
     }
 
     /**
@@ -47,7 +50,7 @@ class AreaController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -58,7 +61,8 @@ class AreaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $area=Area::find($id);
+        return view('area.edit', compact('area'));
     }
 
     /**
@@ -70,7 +74,12 @@ class AreaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $area=Area::findOrFail($id);
+        $request->validate(
+            ['nombre'=> 'required',]
+        );
+        $area->update($request->all());
+        return redirect()->route('area', $area)->with('mensaje','La persona ha sido actualizada exitosamente');
     }
 
     /**
@@ -81,6 +90,13 @@ class AreaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $area=Area::find($id);
+        if($area->estado==0){
+            $area->estado=1;  
+        }elseif($area->estado==1){
+            $area->estado=0;
+        }
+        $area->save();
+        return redirect()->route('area');
     }
 }
